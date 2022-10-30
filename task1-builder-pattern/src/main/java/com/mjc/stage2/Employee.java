@@ -71,28 +71,34 @@ public class Employee {
     public static class EmployeeBuilder {
         private Employee employee;
 
-        public void setName(String name){
-            employee.setName(name);
+        public EmployeeBuilder setName(String name){
+            employee.name = name;
+            return this;
         }
 
-        public void setLastName(String lastName){
-            employee.setLastName(lastName);
+        public EmployeeBuilder setLastName(String lastName){
+            employee.lastName = lastName;
+            return this;
         }
 
-        public void setPosition(String position) {
-            employee.setPosition(position);
+        public EmployeeBuilder setPosition(String position) {
+            employee.position = position;
+            return this;
         }
 
-        public void setPhone(String phone) {
-            employee.setPhone(phone);
+        public EmployeeBuilder setPhone(String phone) {
+            employee.phone = phone;
+            return this;
         }
 
-        public void setEmail(String email) {
-            employee.setEmail(email);
+        public EmployeeBuilder setEmail(String email) {
+            employee.email = email;
+            return this;
         }
 
-        public void setCarNumber(String carNumber) {
-            employee.setCarNumber(carNumber);
+        public EmployeeBuilder setCarNumber(String carNumber) {
+            employee.carNumber = carNumber;
+            return this;
         }
 
         public Employee build(){
