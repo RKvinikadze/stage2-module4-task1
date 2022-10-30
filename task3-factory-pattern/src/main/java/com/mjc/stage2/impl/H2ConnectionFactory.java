@@ -3,6 +3,8 @@ package com.mjc.stage2.impl;
 import com.mjc.stage2.ConnectionFactory;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,21 +16,17 @@ public class H2ConnectionFactory implements ConnectionFactory {
     public Connection createConnection() {
         Connection conn = null;
         try {
-            String rootPath = Objects.requireNonNull(Thread.currentThread().getContextClassLoader().getResource("")).getPath();
-            String appConfigPath = rootPath + "h2database.properties";
+            FileReader reader = new FileReader("task3-factory-pattern/src/main/resources/h2database.properties");
+            Properties appProps =new Properties();
+            appProps.load(reader);
 
-            Properties appProps = new Properties();
-            appProps.load(new FileInputStream(appConfigPath));
-
-            String driver= appProps.getProperty("postgres.driver");
-            String url = appProps.getProperty("postgres.url");
-            String user = appProps.getProperty("postgres.password");
-            String password = appProps.getProperty("postgres.name");
+            String driver = appProps.getProperty("jdbc_driver");
+            String url = appProps.getProperty("db_url");
+            String user = appProps.getProperty("user");
+            String password = appProps.getProperty("password");
 
             Class.forName(driver);
             conn = DriverManager.getConnection(url, user, password);
-        } catch (IOException e){
-            e.printStackTrace();
         } catch (Exception e){
             e.printStackTrace();
         }

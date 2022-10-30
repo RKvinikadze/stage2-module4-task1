@@ -102,7 +102,7 @@ public class Employee {
         }
 
         public Employee build(){
-            return employee;
+            return employee == null ? new Employee() : employee;
         }
 
     }
