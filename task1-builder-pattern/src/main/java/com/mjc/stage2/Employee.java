@@ -71,6 +71,10 @@ public class Employee {
     public static class EmployeeBuilder {
         private Employee employee;
 
+        public EmployeeBuilder(){
+            this.employee = new Employee();
+        }
+
         public EmployeeBuilder setName(String name){
             employee.name = name;
             return this;
@@ -102,7 +106,7 @@ public class Employee {
         }
 
         public Employee build(){
-            return employee == null ? new Employee() : employee;
+            return employee;
         }
 
     }
